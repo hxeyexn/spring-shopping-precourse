@@ -30,4 +30,11 @@ public class ProductRepository {
     public List<Product> findAll() {
         return new ArrayList<>(products.values());
     }
+
+    public Product update(Long id, Product product) {
+        Product updatedProduct = new Product(id, product.name(), product.price(), product.imageUrl());
+        products.put(id, updatedProduct);
+
+        return updatedProduct;
+    }
 }

@@ -41,7 +41,7 @@
     - 특정 상품의 정보를 조회한다.
 - [x] 상품 목록 조회 (`GET /api/products`)
     - 모든 상품의 목록을 조회한다.
-- [ ] 상품 수정 (`PUT /api/products/{productId}`)
+- [x] 상품 수정 (`PUT /api/products/{productId}`)
     - 기존 상품의 정보를 수정한다.
 - [ ] 상품 삭제 (`DELETE /api/products/{productId}`)
     - 특정 상품을 삭제한다.

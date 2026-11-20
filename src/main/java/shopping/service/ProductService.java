@@ -42,4 +42,20 @@ public class ProductService {
     public List<Product> findAllProducts() {
         return productRepository.findAll();
     }
+
+    public Product updateProduct(Long id, String name, int price, String imageUrl) {
+        Product product = productRepository.findById(id);
+
+        if (product == null) {
+            throw new IllegalArgumentException("상품을 찾을 수 없습니다.");
+        }
+
+        Product newProduct = new Product(id, name, price, imageUrl);
+
+        if (purgoMalumClient.containsProfanity(name)) {
+            throw new IllegalArgumentException("상품 이름에 비속어가 포함되어 있습니다.");
+        }
+
+        return productRepository.update(id, newProduct);
+    }
 }
