@@ -1,0 +1,29 @@
+package shopping.service;
+
+import org.springframework.stereotype.Service;
+
+import shopping.domain.Product;
+import shopping.client.PurgoMalumClient;
+import shopping.repository.ProductRepository;
+
+@Service
+public class ProductService {
+
+    private final ProductRepository productRepository;
+    private final PurgoMalumClient purgoMalumClient;
+
+    public ProductService(ProductRepository productRepository, PurgoMalumClient purgoMalumClient) {
+        this.productRepository = productRepository;
+        this.purgoMalumClient = purgoMalumClient;
+    }
+
+    public Product createProduct(String name, int price, String imageUrl) {
+        Product product = new Product(null, name, price, imageUrl);
+
+        if (purgoMalumClient.containsProfanity(name)) {
+            throw new IllegalArgumentException("상품 이름에 비속어가 포함되어 있습니다.");
+        }
+
+        return productRepository.save(product);
+    }
+}
