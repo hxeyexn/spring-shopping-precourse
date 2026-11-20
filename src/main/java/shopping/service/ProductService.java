@@ -58,4 +58,14 @@ public class ProductService {
 
         return productRepository.update(id, newProduct);
     }
+
+    public void deleteProduct(Long id) {
+        Product product = productRepository.findById(id);
+
+        if (product == null) {
+            throw new IllegalArgumentException("상품을 찾을 수 없습니다.");
+        }
+
+        productRepository.deleteById(id);
+    }
 }
