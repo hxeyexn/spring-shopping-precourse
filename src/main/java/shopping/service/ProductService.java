@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import shopping.domain.Product;
 import shopping.client.PurgoMalumClient;
+import shopping.domain.Product;
+import shopping.exception.NotFoundException;
 import shopping.repository.ProductRepository;
 
 @Service
@@ -33,7 +34,7 @@ public class ProductService {
         Product product = productRepository.findById(id);
 
         if (product == null) {
-            throw new IllegalArgumentException("상품을 찾을 수 없습니다.");
+            throw new NotFoundException("상품을 찾을 수 없습니다.");
         }
 
         return product;
@@ -47,7 +48,7 @@ public class ProductService {
         Product product = productRepository.findById(id);
 
         if (product == null) {
-            throw new IllegalArgumentException("상품을 찾을 수 없습니다.");
+            throw new NotFoundException("상품을 찾을 수 없습니다.");
         }
 
         Product newProduct = new Product(id, name, price, imageUrl);
@@ -63,7 +64,7 @@ public class ProductService {
         Product product = productRepository.findById(id);
 
         if (product == null) {
-            throw new IllegalArgumentException("상품을 찾을 수 없습니다.");
+            throw new NotFoundException("상품을 찾을 수 없습니다.");
         }
 
         productRepository.deleteById(id);

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import shopping.domain.Wish;
+import shopping.exception.NotFoundException;
+import shopping.exception.UnauthorizedException;
 import shopping.repository.TokenRepository;
 import shopping.repository.WishRepository;
 
@@ -23,7 +25,7 @@ public class WishService {
         Long memberId = tokenRepository.findMemberIdByToken(token);
 
         if (memberId == null) {
-            throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
+            throw new UnauthorizedException("유효하지 않은 토큰입니다.");
         }
 
         Wish wish = new Wish(null, memberId, productId);
@@ -35,7 +37,7 @@ public class WishService {
         Long memberId = tokenRepository.findMemberIdByToken(token);
 
         if (memberId == null) {
-            throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
+            throw new UnauthorizedException("유효하지 않은 토큰입니다.");
         }
 
         return wishRepository.findAllByMemberId(memberId);
@@ -45,13 +47,13 @@ public class WishService {
         Long memberId = tokenRepository.findMemberIdByToken(token);
 
         if (memberId == null) {
-            throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
+            throw new UnauthorizedException("유효하지 않은 토큰입니다.");
         }
 
         Wish wish = wishRepository.findById(wishId);
 
         if (wish == null) {
-            throw new IllegalArgumentException("위시를 찾을 수 없습니다.");
+            throw new NotFoundException("위시를 찾을 수 없습니다.");
         }
 
         if (!wish.isOwnedBy(memberId)) {
