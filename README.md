@@ -39,7 +39,7 @@
     - 이름, 가격, 이미지 URL을 입력받아 새 상품을 등록한다.
 - [x] 상품 조회 (`GET /api/products/{productId}`)
     - 특정 상품의 정보를 조회한다.
-- [ ] 상품 목록 조회 (`GET /api/products`)
+- [x] 상품 목록 조회 (`GET /api/products`)
     - 모든 상품의 목록을 조회한다.
 - [ ] 상품 수정 (`PUT /api/products/{productId}`)
     - 기존 상품의 정보를 수정한다.

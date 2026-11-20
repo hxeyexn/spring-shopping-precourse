@@ -1,6 +1,8 @@
 package shopping.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -23,5 +25,9 @@ public class ProductRepository {
 
     public Product findById(Long id) {
         return products.get(id);
+    }
+
+    public List<Product> findAll() {
+        return new ArrayList<>(products.values());
     }
 }

@@ -1,5 +1,7 @@
 package shopping.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +35,13 @@ public class ProductController {
         Product product = productService.findProduct(productId);
 
         return ResponseEntity.ok(product);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Product>> findAllProducts() {
+        List<Product> products = productService.findAllProducts();
+
+        return ResponseEntity.ok(products);
     }
 
     record ProductRequest(String name, int price, String imageUrl) {

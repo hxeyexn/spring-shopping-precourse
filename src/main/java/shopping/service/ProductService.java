@@ -1,5 +1,7 @@
 package shopping.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import shopping.domain.Product;
@@ -35,5 +37,9 @@ public class ProductService {
         }
 
         return product;
+    }
+
+    public List<Product> findAllProducts() {
+        return productRepository.findAll();
     }
 }
