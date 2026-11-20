@@ -13,4 +13,8 @@ public class TokenRepository {
     public void save(String token, Long memberId) {
         tokens.put(token, memberId);
     }
+
+    public Long findMemberIdByToken(String token) {
+        return tokens.get(token);
+    }
 }
