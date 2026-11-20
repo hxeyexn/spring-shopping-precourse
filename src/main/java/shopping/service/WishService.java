@@ -1,5 +1,7 @@
 package shopping.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import shopping.domain.Wish;
@@ -27,5 +29,15 @@ public class WishService {
         Wish wish = new Wish(null, memberId, productId);
 
         return wishRepository.save(wish);
+    }
+
+    public List<Wish> findWishes(String token) {
+        Long memberId = tokenRepository.findMemberIdByToken(token);
+
+        if (memberId == null) {
+            throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
+        }
+
+        return wishRepository.findAllByMemberId(memberId);
     }
 }

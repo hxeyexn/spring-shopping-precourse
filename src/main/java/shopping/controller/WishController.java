@@ -1,6 +1,9 @@
 package shopping.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -26,6 +29,13 @@ public class WishController {
         Wish wish = wishService.addWish(token, request.productId());
 
         return ResponseEntity.ok(wish);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Wish>> findWishes(@RequestHeader("Authorization") String token) {
+        List<Wish> wishes = wishService.findWishes(token);
+
+        return ResponseEntity.ok(wishes);
     }
 
     record WishRequest(Long productId) {
