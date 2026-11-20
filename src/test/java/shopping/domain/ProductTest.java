@@ -21,7 +21,7 @@ class ProductTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"a", "상품 이름", "hxeyexnhxeyexnhxeyexn"})
+    @ValueSource(strings = {"a", "상품 이름", "hxeyexnhxeyexnh"})
     void 상품_이름이_15자_이하이면_상품이_생성된다(String name) {
         assertThatNoException()
                 .isThrownBy(() -> new Product(1L, name, 1000, "http://image.png"));
@@ -31,6 +31,20 @@ class ProductTest {
     void 상품_이름이_15자를_초과하면_상품을_생성하지_않는다() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new Product(1L, "hxeyexnhxeyexnhxeyexn", 1000, "http://image.png"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"상품(A)", "상품[B]", "A+B", "A-B", "A&B", "A/B", "A_B"})
+    void 상품_이름에_허용된_특수_문자가_포함되면_상품이_생성된다(String name) {
+        assertThatNoException()
+                .isThrownBy(() -> new Product(1L, name, 1000, "http://image.png"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"상품!", "상품@", "상품#", "상품%", "상품*"})
+    void 상품_이름에_허용되지_않은_특수_문자가_포함되면_상품을_생성하지_않는다(String name) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Product(1L, name, 1000, "http://image.png"));
     }
 
     @Test
