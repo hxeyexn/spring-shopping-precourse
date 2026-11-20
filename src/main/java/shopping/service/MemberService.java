@@ -32,4 +32,17 @@ public class MemberService {
 
         return token;
     }
+
+    public String login(String email, String password) {
+        Member member = memberRepository.findByEmail(email);
+
+        if (member == null || !member.password().equals(password)) {
+            throw new IllegalArgumentException("이메일 또는 비밀번호가 일치하지 않습니다.");
+        }
+
+        String token = UUID.randomUUID().toString();
+        tokenRepository.save(token, member.id());
+
+        return token;
+    }
 }
