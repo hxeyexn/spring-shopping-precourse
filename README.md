@@ -60,3 +60,16 @@
     - 인증된 회원의 위시 리스트에 있는 상품을 조회한다.
 - [x] 위시 리스트 상품 삭제 (`DELETE /api/wishes/{wishId}`)
     - 인증된 회원의 위시 리스트에서 상품을 삭제한다.
+
+## AI 도구 활용 기록
+
+### 활용 방식
+- Java record에서 Kotlin의 require과 유사한 기능이 있는지 등 Kotlin의 개념과 유사한 Java 기능들이 있는지 알아봄
+- 스프링 부트 테스트 코드 작성 및 학습
+- PurgoMalum API의 엔드포인트, 파라미터, 응답 형식을 AI를 통해 조사하고 클라이언트를 구현함
+
+### 학습 내용
+- **record의 compact constructor**: Java record에서 Kotlin의 `require`과 유사하게 compact constructor를 활용하여 생성 시점에 유효성 검증을 수행할 수 있음 (예: 이름 길이, 특수 문자 검증)
+- **MockMvc를 활용한 통합 테스트**: `@SpringBootTest` + `@AutoConfigureMockMvc`로 실제 Spring 컨텍스트를 띄워 HTTP 요청/응답 흐름을 테스트할 수 있음
+    - `perform()`: 실제 HTTP 요청을 모의 실행하는 메서드. `post()`, `get()`, `put()`, `delete()` 등으로 요청 방식을 지정하고, `contentType()`, `content()`, `header()` 등으로 요청 정보를 설정함
+    - `andExpect()`: `perform()`의 응답 결과를 검증하는 메서드. `status().isOk()`로 상태 코드를, `jsonPath("$.name").value("상품")`로 JSON 응답 필드를 검증함
