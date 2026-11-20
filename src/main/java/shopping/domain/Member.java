@@ -10,4 +10,12 @@ public record Member(Long id, String email, String password) {
             throw new IllegalArgumentException("비밀번호는 4자리 이상이어야 합니다.");
         }
     }
+
+    public boolean hasEmail(String email) {
+        return this.email.equals(email);
+    }
+
+    public boolean hasPassword(String password) {
+        return this.password.equals(password);
+    }
 }

@@ -23,7 +23,7 @@ public class MemberRepository {
 
     public Member findByEmail(String email) {
         return members.values().stream()
-                .filter(member -> member.email().equals(email))
+                .filter(member -> member.hasEmail(email))
                 .findFirst()
                 .orElse(null);
     }
