@@ -22,6 +22,14 @@ public class WishRepository {
         return savedWish;
     }
 
+    public Wish findById(Long id) {
+        return wishes.get(id);
+    }
+
+    public void deleteById(Long id) {
+        wishes.remove(id);
+    }
+
     public List<Wish> findAllByMemberId(Long memberId) {
         return wishes.values().stream()
                 .filter(wish -> wish.isOwnedBy(memberId))

@@ -40,4 +40,24 @@ public class WishService {
 
         return wishRepository.findAllByMemberId(memberId);
     }
+
+    public void deleteWish(String token, Long wishId) {
+        Long memberId = tokenRepository.findMemberIdByToken(token);
+
+        if (memberId == null) {
+            throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
+        }
+
+        Wish wish = wishRepository.findById(wishId);
+
+        if (wish == null) {
+            throw new IllegalArgumentException("위시를 찾을 수 없습니다.");
+        }
+
+        if (!wish.isOwnedBy(memberId)) {
+            throw new IllegalArgumentException("본인의 위시만 삭제할 수 있습니다.");
+        }
+
+        wishRepository.deleteById(wishId);
+    }
 }
