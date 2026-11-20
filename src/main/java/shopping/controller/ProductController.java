@@ -60,6 +60,6 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
-    record ProductRequest(String name, int price, String imageUrl) {
+    record ProductRequest(String name, long price, String imageUrl) {
     }
 }

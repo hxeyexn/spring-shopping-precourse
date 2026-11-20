@@ -1,6 +1,6 @@
 package shopping.domain;
 
-public record Product(Long id, String name, int price, String imageUrl) {
+public record Product(Long id, String name, long price, String imageUrl) {
 
     private static final String ALLOWED_NAME_PATTERN = "^[a-zA-Z가-힣0-9 ()\\[\\]+\\-&/_]*$";
 

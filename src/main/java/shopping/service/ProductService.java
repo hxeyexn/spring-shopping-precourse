@@ -20,7 +20,7 @@ public class ProductService {
         this.purgoMalumClient = purgoMalumClient;
     }
 
-    public Product createProduct(String name, int price, String imageUrl) {
+    public Product createProduct(String name, long price, String imageUrl) {
         Product product = new Product(null, name, price, imageUrl);
 
         if (purgoMalumClient.containsProfanity(name)) {
@@ -44,7 +44,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product updateProduct(Long id, String name, int price, String imageUrl) {
+    public Product updateProduct(Long id, String name, long price, String imageUrl) {
         Product product = productRepository.findById(id);
 
         if (product == null) {
