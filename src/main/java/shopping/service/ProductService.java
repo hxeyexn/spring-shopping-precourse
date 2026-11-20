@@ -26,4 +26,14 @@ public class ProductService {
 
         return productRepository.save(product);
     }
+
+    public Product findProduct(Long id) {
+        Product product = productRepository.findById(id);
+
+        if (product == null) {
+            throw new IllegalArgumentException("상품을 찾을 수 없습니다.");
+        }
+
+        return product;
+    }
 }
