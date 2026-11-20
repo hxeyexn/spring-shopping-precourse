@@ -47,7 +47,7 @@
     - 특정 상품을 삭제한다.
 
 ### 회원 로그인
-- [ ] 회원 가입 (`POST /api/members/register`)
+- [x] 회원 가입 (`POST /api/members/register`)
     - 이메일과 비밀번호로 회원을 등록하고 토큰을 발급
 - [ ] 로그인 (`POST /api/members/login`)
     - 이메일과 비밀번호를 검증하고, 일치하면 인증 토큰을 발급
