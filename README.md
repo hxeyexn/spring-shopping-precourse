@@ -35,7 +35,7 @@
         - 허용: `( ) [ ] + - & / _`
     - [x] 상품 이름에는 비속어 포함 불가
         - [x] PurgoMalum API 호출하여 비속어 포함 여부 검사
-- [ ] 상품 생성 (`POST /api/products`)
+- [x] 상품 생성 (`POST /api/products`)
     - 이름, 가격, 이미지 URL을 입력받아 새 상품을 등록한다.
 - [ ] 상품 조회 (`GET /api/products/{productId}`)
     - 특정 상품의 정보를 조회한다.
