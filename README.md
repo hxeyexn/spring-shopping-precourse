@@ -5,6 +5,26 @@
 - HTTP 요청과 응답은 JSON 형식으로 주고 받음
 - 스프링 프레임워크를 사용하여 웹 애플리케이션으로 구현
 
+## 구현 전략
+
+### 계층 구조
+- Controller → Service → Repository
+    - Controller: 요청/응답 처리만
+    - Service: 비즈니스 로직 조합 (비속어 검사 등 외부 API 호출 포함)
+    - Repository: 데이터 저장/조회만
+- 도메인 객체에서 자체 유효성 검증 (이름 길이, 특수 문자)
+
+### 데이터 저장
+- DB 없이 `HashMap`을 활용한 인메모리 저장
+
+### 인증
+- JWT 없이 간단한 토큰 방식 사용
+- 로그인 시 `UUID` 토큰을 발급하고 인메모리로 관리
+- 요청 시 `Authorization` 헤더에 토큰을 포함하여 인증
+
+### 비속어 검사
+- `PurgoMalumClient`에서 `https://www.purgomalum.com/service/containsprofanity` 엔드포인트를 호출하여 비속어 포함 여부 확인
+
 ## 구현할 기능 목록
 ### 상품
 - [ ] 상품
